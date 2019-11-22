@@ -1,0 +1,381 @@
+﻿.com-torr {
+	position: relative
+}
+
+.com-torr .torrent,.com-torr .thead,.com-torr .tfoot,.com-torr .tl,.com-torr .tr,.com-torr .fo {
+	*zoom: 1
+}
+
+.com-torr .torrent:after,.com-torr .thead:after,.com-torr .tfoot:after,.com-torr .tl:after,.com-torr .tr:after,.com-torr .fo:after {
+	clear: both;
+	content: " ";
+	display: block;
+	font-size: 0;
+	height: 0;
+	visibility: hidden;
+	font-family: Arial
+}
+
+.com-torr .torrent {
+	position: relative
+}
+
+.com-torr .torr,.com-torr .torr-sp {
+	float: left;
+	display: block;
+	position: relative;
+	border: 1px solid #d6d6d6;
+	background: #FFF;
+	cursor: pointer
+}
+
+.com-torr .torr .tit,.com-torr .torr-sp .tit {
+	text-align: center
+}
+
+.com-torr .torr-min,.com-torr .torr-max {
+	border: 1px solid #d6d6d6;
+	background: #FFF;
+	text-align: center;
+	cursor: pointer;
+	overflow: hidden
+}
+
+.com-torr .torr-min .ico,.com-torr .torr-max .ico {
+	width: 12px;
+	height: 6px;
+	display: inline-block;
+	margin-left: 10px;
+	vertical-align: middle
+}
+
+.com-torr .torr-min {
+	background: 0 0;
+	float: right
+}
+
+.com-torr .torr-min .ico {
+	background: url(img/ico_arrow_line_up_9bc4b8d329.png) no-repeat
+}
+
+.com-torr .torr-max .ico {
+	background: url(img/ico_arrow_line_down_1fc85df231.png) no-repeat
+}
+
+.com-torr .torr-max .variety_count {
+	color: #9b9b9b
+}
+
+.com-torr .torr-max .tit:hover .veriety_count {
+	color: #9b9b9b
+}
+
+.com-torr .torr .pic {
+	display: none
+}
+
+.com-torr .torr .checkbox {
+	width: 14px;
+	height: 14px;
+	display: block;
+	background: url(img/ico_check_e1a586de08.png) no-repeat;
+	position: absolute;
+	right: 2px;
+	bottom: 2px
+}
+
+.com-torr .ico {
+	display: none
+}
+
+.com-torr .checked .checkbox {
+	background: url(img/ico_checked_55c85c5dfc.png) no-repeat
+}
+
+.com-torr .tl {
+	float: left
+}
+
+.com-torr .tl .plugs {
+	float: left
+}
+
+.com-torr .tr {
+	float: right
+}
+
+.com-torr .fo .plugs {
+	float: left
+}
+
+.com-torr .tit,.com-torr .pic,.com-torr .period {
+	display: block
+}
+
+.com-torr .editmode .torr {
+	background: #F2F2F2;
+	border: 1px solid #ebebeb
+}
+
+.com-torr .imgmode .pic {
+	display: inline
+}
+
+.com-torr .wrap-e {
+	display: none
+}
+
+.com-torr .wrap-e .checkbox {
+	display: none
+}
+
+.com-torr .editmode .wrap-e {
+	display: block
+}
+
+.com-torr .editmode .wrap-e .checkbox {
+	display: block
+}
+
+.com-torr .editmode .wrap-n {
+	display: none
+}
+
+.com-torr .torr-sp,.com-torr .torr-max {
+	float: left
+}
+
+.com-torr-variety .variety_count {
+	margin-left: 17px
+}
+
+.com-torr-movie .torr,.com-torr-vfilm .torr {
+	padding: 10px 11px;
+	margin-right: 38px;
+	margin-bottom: 10px
+}
+
+.com-torr-movie .torr .tit,.com-torr-vfilm .torr .tit {
+	position: relative;
+	white-space: nowrap;
+	padding-left: 32px
+}
+
+.com-torr-movie .torr .ico,.com-torr-vfilm .torr .ico {
+	display: block;
+	float: left;
+	width: 30px;
+	height: 14px;
+	position: absolute;
+	left: 0;
+	top: 0
+}
+
+.com-torr .supply {
+	color: #CCC;
+	cursor: default
+}
+
+.com-torr .editmode .supply {
+	color: #CCC;
+	cursor: default
+}
+
+.com-torr .torr-type {
+	position: absolute;
+	width: 16px;
+	height: 19px;
+	right: 0;
+	top: 0;
+	display: block
+}
+
+.com-torr .prevue .torr-type {
+	width: 20px;
+	height: 17px;
+	background-repeat: no-repeat;
+}
+
+.com-torr .new .torr-type {
+	background-repeat: no-repeat;
+}
+
+.com-torr .tv .ico {
+	background: url(img/ico_tv_1e3b57be68.png) no-repeat
+}
+
+.com-torr .dvd .ico {
+	background: url(img/ico_sd_41e5551f52.png) no-repeat
+}
+
+.com-torr .high_dvd .ico {
+	background: url(img/ico_hd_a5a701d605.png) no-repeat
+}
+
+.com-torr .super_dvd .ico {
+	background: url(img/ico_shd_99282d8405.png) no-repeat
+}
+
+.plugs-rate {
+	font-size: 14px
+}
+
+.plugs-rate .tit {
+	float: left;
+	display: block
+}
+
+.plugs-rate .ico {
+	display: block;
+	float: left;
+	height: 8px;
+	width: 14px;
+	background: url(img/ico_arrow_down_b1afda8108.png) no-repeat;
+	margin-top: 5px;
+	margin-left: 4px
+}
+
+.plugs-rate .combox-title {
+	cursor: pointer;
+	border: 1px solid #d6d6d6;
+	height: 34px;
+	width: 70px
+
+}
+
+.plugs-rate .combox-title .label {
+	margin: 10px 0 0 15px;
+	display: block
+}
+
+.plugs-rate .combox-list {
+	position: absolute
+}
+
+.plugs-rate .combox-list .ico {
+	display: none
+}
+
+.plugs-rate .combox-list .item {
+	display: block;
+	height: 34px;
+	width: 70px;
+	border: 1px solid #d6d6d6;
+	background: #FFF;
+	margin-top: -1px;
+	cursor: pointer
+}
+
+.plugs-rate .combox-list .item:hover {
+	background: #F6F6F6;
+	color: #f86400
+}
+
+.plugs-rate .combox-list .item .tit {
+	margin: 10px 0 0 15px
+}
+
+.plugs-rate .combox-list .current {
+	background: #F6F6F6;
+	color: #f86400
+}
+
+.com-torr .combox-focus .ico {
+	background: url(img/ico_arrow_up_a43b8cb9f5.png) no-repeat
+}
+
+.plugs-edit .btn {
+	display: block;
+	width: 140px;
+	height: 36px;
+	text-indent: -1000px;
+	overflow: hidden;
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+
+.plugs-edit .btn:hover {
+	background-repeat: no-repeat;
+}
+
+.plugs-edit .on {
+	background-repeat: no-repeat;
+}
+
+.plugs-edit .on:hover {
+	background-repeat: no-repeat;
+}
+
+.plugs-check .btn {
+	cursor: pointer
+}
+
+.plugs-check .btn i {
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	background: url(img/ico_check_e1a586de08.png) no-repeat
+}
+
+.plugs-check .on i {
+	background: url(img/ico_checked_55c85c5dfc.png) no-repeat
+}
+
+.plugs-play .btn {
+	cursor: default;
+	width: 140px;
+	height: 36px;
+	display: block;
+	background-repeat: no-repeat;
+}
+
+.plugs-play .on {
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+
+.com-torr .com-pager {
+	margin: 0;
+	font-family: Arial
+}
+
+.com-torr .com-pager a,.com-torr .com-pager a.p-current,.com-torr .com-pager a:hover {
+	border: 0;
+	background: 0 0
+}
+
+.com-torr .prevue .torr-type {
+	background-position: -120px 0px
+}
+
+.com-torr .new .torr-type {
+	background-position: -124px -27px
+}
+
+.plugs-edit .btn {
+	background-position: 0px -56px
+}
+
+.plugs-edit .btn:hover {
+	background-position: 0px -102px
+}
+
+.plugs-edit .on {
+	background-position: 0px -148px
+}
+
+.plugs-edit .on:hover {
+	background-position: 0px -194px
+}
+
+.plugs-play .btn {
+	background-position: 0px -240px
+}
+
+.plugs-play .on {
+	background-position: 0px -286px
+}
+
+.com-torr .prevue .torr-type,.com-torr .new .torr-type,.plugs-edit .btn,.plugs-edit .btn:hover,.plugs-edit .on,.plugs-edit .on:hover,.plugs-play .btn,.plugs-play .on {
+	background-image: url(img/Torr_z_e53b26937e.png)
+}

@@ -1,0 +1,40 @@
+﻿/*content-------------------------------------------*/
+div.wrap{overflow:hidden;}
+div.mwrap{margin-top:0px}
+section.videobox{padding-top:10px;}
+.sltlt{clear:both;background:#fff;margin-bottom:10px;}
+.sltlt li {width:96%;padding:0 2%;overflow:hidden;font-size:1rem;line-height:2.66667rem;height:2.66667rem;border-bottom:1px solid #eee;position:relative;}
+.sltlt li .con {max-width:720px;width:1666.66667rem;height:2.66667rem;position:absolute;top:0;left:0;}
+.sltlt li .con p {float:left;}
+.sltlt li .con p a.cur {color:#0885D4;}
+.sltlt li .con p a {float:left;padding:0 0.66667rem;	line-height:2.66667rem;}
+div.page{overflow:hidden;margin:15px 1.4%;text-align:center;}
+div.page a{padding:8px 0px;background:#fff;text-align:center;font-size:1rem;display:inline-block;color:#222;}
+div.page a.prevp{width:49%;margin-right:2%;float:left;}
+div.page a.nextp{float:right;width:49%;}
+div.page a:hover{background:#23252A;color:#fff;}
+div.blank{height:20px;clear:both;}
+a.nowplay{background:#FF8B00 url(../images/iconyg.png) left center no-repeat;color:#fff;display:block;float:left;margin-top:5px;padding-left:20px;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;}
+a.nowplay:hover{background-color:#E2800C;}
+a.trailerplay{background:#FF8B00 url(../images/iconyg.png) left center no-repeat;color:#fff;display:block;float:left;margin-top:5px;padding-left:20px;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;}
+a.trailerplay:hover{background-color:#E2800C;}
+div.des{margin-top:20px;overflow:hidden;}
+div.des div.title{height:39px;border-bottom:1px solid #ddd;}
+div.des div.title b{border:1px solid #ddd;display:block;width:50%;height:40px;line-height:40px;font-size:1.25em;font-weight:500;text-align:center;border-bottom:none;margin-bottom:-1px;background:#f2f2f2;color:#63900A;}
+div.des div.content{margin-top:20px;}
+div.des div.content p{font-size:0.875em;margin:5px 0px;}
+div.des div.content p a{font-size:0.875em;color:#6EA607;margin-right:10px;}
+div.des div.content p.des span.showdes,div.des div.content p.des span.hidedes{color:#87BF16;}
+div.des div.content p.des span.moredes{display:none;}
+.piclist{padding:10px;background:#fff;}
+.piclist ul li img{display:block;border:1px solid #ccc;height:70px;width:70px;float:left;margin-right:10px;padding:2px;}
+.piclist ul li img.borderimg{border-radius:100px;-moz-border-radius:100px;-webkit-border-radius:100px;}
+.piclist ul li:hover img{border: 1px solid #FF5517;}
+.piclist ul li{clear:both;margin-bottom:15px;overflow:hidden;text-align:left;padding-top:10px;}
+.piclist ul li p{height:44px;line-height:22px;overflow:hidden;font-size:14px;}
+.piclist ul li p:hover{color:#D53D06;}
+.piclist ul li span{color:#999;font-size:12px;text-align:left;}
+.piclist ul li .tit{height:24px;}
+.piclist ul li div.dc{height: 44px;line-height:22px;margin-top: 8px;}
+.piclist span.biti{float: left;font-size: 1.3em}
+

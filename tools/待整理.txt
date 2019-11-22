@@ -1,0 +1,23 @@
+1、lru-cache
+https://segmentfault.com/a/1190000012939607?utm_source=tag-newest
+
+2、hbs
+http://blog.seebin.com/2018/08/21/handlebars/
+https://cloud.tencent.com/developer/article/1378200
+https://m.imooc.com/mip/article/6923?from=singlemessage
+http://ekoneko.github.io/blog/node/express-hbs/?from=singlemessage
+https://www.cnblogs.com/chyingp/p/hbs-getting-started.html
+3、async
+https://blog.csdn.net/weixin_34391854/article/details/85910283
+
+
+4、formidable
+
+5/mkdirp
+
+6.gm
+https://blog.csdn.net/weixin_44273392/article/details/96180356
+https://blog.csdn.net/a19905522/article/details/51887882?locationNum=10&fps=1
+
+
+分类修改时报错：E11000 duplicate key error collection: edacms.categories index: path_1 dup key: { : "/series/china" }
