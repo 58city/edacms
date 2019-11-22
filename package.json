@@ -1,7 +1,7 @@
 {
   "name": "edacms",
   "description": "CMS内容管理系统",
-  "version": "1.4.0",
+  "version": "1.0.0",
   "author": {
     "name": "ssl",
     "email": "1009373481@qq.com"
@@ -15,7 +15,7 @@
   "keywords": [
     "EdaCMS",
     "node cms",
-    "CMS",
+    "CMS", 
     "cms"
   ],
   "dependencies": {
