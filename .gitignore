@@ -11,6 +11,7 @@ node_modules
 tmp/*
 !tmp/.gitkeep
 logs/*
+tools/*
 !logs/*/*.gitkeep
 public/media/*
 !public/media/.gitkeep
