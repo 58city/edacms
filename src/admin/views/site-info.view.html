@@ -1,0 +1,72 @@
+<form ng-submit="submitSiteInfo()" class="form-horizontal margin-13" id="siteInfoForm" name="siteInfoForm" novalidate>
+	<div class="jarviswidget">
+		<header>
+			<ul class="nav nav-tabs in pull-left">
+				<li class="active"><a data-toggle="tab" data-target="#hr1">基本配置</a></li>
+				<li><a data-toggle="tab" data-target="#hr2">高级配置</a></li>
+			</ul>
+			<div class="jarviswidget-ctrls" ng-if="editAuth">
+				<button  ng-disabled="siteInfoForm.$invalid || disable_form" class="button-icon" type="submit">
+					<i class="fa fa-save"></i> 保存配置
+				</button>
+			</div>
+		</header>
+		<div class="widget-body">
+			<div class="tab-content">
+				<div class="tab-pane active" id="hr1">
+					<div ng-class="{ 'has-error': siteInfoForm.title.$touched && siteInfoForm.title.$invalid }" class="form-group">
+						<label for="inputTitle" class="col-sm-2 control-label">* 网站标题：</label>
+						<div class="col-sm-10">
+							<input ng-if="editAuth" ng-model="$parent.title" ng-disabled="disable_form" class="form-control" id="inputTitle" type="text" name="title" placeholder="请输入网站标题" required>
+							<p ng-if="readAuth && !editAuth" class="form-control-static">{{title}}</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputKeywords" class="col-sm-2 control-label">关键词：</label>
+						<div class="col-sm-10">
+							<input ng-if="editAuth" ng-model="$parent.keywords" ng-disabled="disable_form" class="form-control" id="inputKeywords" type="text" name="keywords" placeholder="META Keywords（网站关键词）">
+							<p ng-if="readAuth && !editAuth" class="form-control-static">{{keywords}}</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputDescription" class="col-sm-2 control-label">描述：</label>
+						<div class="col-sm-10">
+							<textarea ng-if="editAuth" ng-model="$parent.description" ng-disabled="disable_form" class="form-control" id="inputDescription" name="description" rows="3" placeholder="META Description（网站描述）"></textarea>
+							<p ng-if="readAuth && !editAuth" class="form-control-static">{{description}}</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputDescription" class="col-sm-2 control-label">主题：</label>
+						<div class="col-sm-10">
+							<!-- directory作为value,name作为label -->
+							<select ng-if="editAuth" 
+									ng-model="$parent.theme" 
+									ng-options="theme.directory as theme.name for theme in themes" 
+									ng-disabled="disable_form" class="form-control" required>
+							</select>
+							<p ng-if="readAuth && !editAuth" class="form-control-static">{{theme}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="hr2">
+					<div class="form-group">
+						<label for="textareaCodeHeader" class="col-sm-2 control-label">代码（顶部）：</label>
+						<div class="col-sm-10">
+							<textarea ng-if="editAuth" ng-model="$parent.codeHeader" ng-disabled="disable_form" class="form-control" id="textareaCodeHeader" name="codeHeader" rows="4" placeholder="例：<script>统计代码</script>"></textarea>
+							<pre ng-if="readAuth && !editAuth" class="pre-scrollable">{{codeHeader}}</pre>
+							<span class="help-block">这里的代码将注入到网站每一个页面头部</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="textareaCodeFooter" class="col-sm-2 control-label">代码（底部）：</label>
+						<div class="col-sm-10">
+							<textarea ng-if="editAuth" ng-model="$parent.codeFooter" ng-disabled="disable_form" class="form-control" id="textareaCodeFooter" name="codeFooter" rows="4" placeholder="例：<script>统计代码</script>"></textarea>
+							<pre ng-if="readAuth && !editAuth" class="pre-scrollable">{{codeFooter}}</pre>
+							<span class="help-block">这里的代码将注入到网站每一个页面底部</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

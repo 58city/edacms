@@ -1,0 +1,34 @@
+<!-- 主体 -->
+<div ui-view class="view">
+	<div class="jarviswidget margin-13">
+		<header>
+			<h2>用户列表</h2>
+			<div class="jarviswidget-ctrls" ng-if="editAuth">
+				<a class="button-icon" ui-sref="main.adminUsers.create" ng-click="disable_form?$event.preventDefault():false">
+					&nbsp;&nbsp;<i class="fa fa-plus"></i> 新增用户&nbsp;&nbsp;
+				</a>	
+			</div>
+		</header>
+		<div class="widget-body table-responsive">
+			<table class="table table-hover table-bordered">
+				<thead class="text-center">
+					<tr><th>Email</th><th>昵称</th><th>角色</th><th ng-if="editAuth">操作</th></tr>
+				</thead>
+				<tbody class="text-center">
+					<tr ng-repeat="user in users">
+						<td>{{user.email}}</td><td>{{user.nickname}}</td><td>{{user.role.name}}</td>
+						<td ng-if="user.isSupAdmin && editAuth">----</td>
+						<td ng-if="!user.isSupAdmin && editAuth">
+							<a ui-sref="main.adminUsers.update({ _id: user._id })" ng-disabled="disable_form" ng-click="disable_form?$event.preventDefault():false" class="btn btn-default btn-xs">
+								<i class="fa fa-edit"></i> 修改
+							</a>
+							<button ng-click="deleteUser(user._id)" ng-disabled="disable_form" type="button" class="btn btn-default btn-xs" >
+								<i class="fa fa-trash-o"></i> 删除
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

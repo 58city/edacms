@@ -1,0 +1,12 @@
+<div id="ribbon">
+    <span class="btn" ng-click="resetWidgets()"> 
+        <i class="fa fa-refresh"></i>
+    </span>
+    <ol class="breadcrumb">
+        <li ng-repeat="route in routes">
+            <a href="javascript:void(0);">
+            {{ route.en_name | translate:{display:'zh_name',same:'type',source:menuType} }}
+        	</a>
+        </li>
+    </ol>
+</div>

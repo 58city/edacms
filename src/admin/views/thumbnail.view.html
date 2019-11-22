@@ -1,0 +1,50 @@
+<!-- 裁剪模态 -->
+<div class="modal fade" id="corpModal" tabindex="-1" role="dialog" aria-labelledby="corpModalTitle" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="关闭">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="corpModalTitle">裁剪</h4>
+			</div>
+			<div class="modal-body">
+				<div class="crop-thumbnail-wrap">
+					<!-- image-cropper指令启动裁剪框 -->
+					<!-- 指令参数image，传入被裁剪的图片BLOB URL -->
+					<!-- 指令参数cropped-image，传入裁剪后的图片DATA-URI所存储的变量 -->
+					<!-- 指令参数keep-aspect，是否按比例裁剪 -->
+					<!-- 指令参数crop-width、crop-height、min-width、min-height-->
+					<canvas width="568" height="426" image-cropper image="thumbnail.sourceImage" 
+							cropped-image="thumbnail.croppedImage" keep-aspect="true"
+							crop-width="width" crop-height="height" min-width="minWidth" min-height="minHeight" >
+					</canvas>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default" type="button" data-dismiss="modal">取消</button>
+				<button ng-click="uploadThumbnail()" class="btn btn-primary" type="button"><i class="fa fa-crop"></i> 裁剪</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 缩略图框 -->
+<!-- thumbnail.uploadStatus==initial/uploading缩略图模糊 -->
+<!-- thumbnail.uploadStatus==success缩略图清晰 -->
+<div ng-class="thumbnail.uploadStatus" class="upload-thumbnail">
+	<!-- 加载动画 -->
+	<div ng-if="thumbnail.uploadStatus === 'uploading'" class="uploading-spinner">
+		<i class="fa fa-spinner fa-spin"></i>
+	</div>
+	<!-- 删除按钮 -->
+	<span ng-if="thumbnail.croppedImage" ng-click="removeThumbnail()" class="fa-stack fa-lg remove top-right pointer">
+		<i class="fa fa-circle fa-stack-2x"></i>
+		<i class="fa fa-remove fa-stack-1x fa-inverse"></i>
+	</span>
+	<!-- 缩略图片 -->
+	<img ng-if="thumbnail.croppedImage" ng-src="{{thumbnail.croppedImage}}">
+	<!-- 上传按钮 -->
+	<button ngf-select="cropThumbnail($files)" ngf-drop ngf-accept="'image/*'" ngf-max-size="10MB" class="btn-upload-thumbnail" type="button">
+		<i class="fa fa-plus"></i>
+	</button>
+</div>

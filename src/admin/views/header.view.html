@@ -1,0 +1,105 @@
+<header id="header">
+	<div id="logo-group">
+		<span id="logo"> <img src="/assets/admin/images/logo.png" alt="edacms"></span>
+	</div>
+	<div class="pull-right">
+		<div id="hide-menu" class="btn-header pull-right">
+			<span> 
+				<a href="javascript:void(0);" title="折叠菜单" ng-click="toggleMenu()">
+					<i class="fa fa-reorder"></i>
+				</a> 
+			</span>
+		</div>			
+		<div id="logout" class="btn-header transparent pull-right">
+			<span> 
+				<a href="javascript:void(0);" title="退出" ng-click="logout()">
+					<i class="fa fa-sign-out"></i>
+				</a> 
+			</span>
+		</div>
+		<div id="search-mobile" class="btn-header transparent pull-right" ng-click="show_search_m()">
+			<span> 
+				<a href="javascript:void(0)" title="搜索">
+					<i class="fa fa-search"></i>
+				</a> 
+			</span>
+		</div>
+		<form action="#ajax/search.html" class="header-search pull-right">
+			<input id="search-fld" type="text" name="param" placeholder="输入查找内容">
+			<button type="submit">
+				<i class="fa fa-search"></i>
+			</button>
+			<a href="javascript:void(0);" id="cancel-search-js" title="取消搜索" ng-click="hide_search_m()">
+				<i class="fa fa-times"></i>
+			</a>
+		</form>
+		<div id="fullscreen" class="btn-header transparent pull-right hidden-xs">
+			<span> 
+				<a href="javascript:void(0);" title="全屏" ng-click="fullscreen()">
+					<i class="fa fa-arrows-alt"></i>
+				</a> 
+			</span>
+		</div>
+		<ul class="header-dropdown-list hidden-xs">
+			<li>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+					<img src="/assets/admin/images/blank.gif" class="flag flag-us" alt="United States"> 
+					<span> US</span> 
+					<i class="fa fa-angle-down"></i> 
+				</a>
+				<ul class="dropdown-menu pull-right">
+					<li class="active">
+						<a href="javascript:void(0);">
+							<img src="/assets/admin/images/blank.gif" class="flag flag-us" alt="United States"> English (US)
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0);">
+							<img src="/assets/admin/images/blank.gif" class="flag flag-fr" alt="France"> Français
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0);">
+							<img src="/assets/admin/images/blank.gif" class="flag flag-es" alt="Spanish"> Español
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0);">
+							<img src="/assets/admin/images/blank.gif" class="flag flag-de" alt="German"> Deutsch
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0);">
+							<img src="/assets/admin/images/blank.gif" class="flag flag-jp" alt="Japan"> 日本語
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0);">
+							<img src="/assets/admin/images/blank.gif" class="flag flag-cn" alt="China"> 中文
+						</a>
+					</li>	
+					<li>
+						<a href="javascript:void(0);">
+							<img src="/assets/admin/images/blank.gif" class="flag flag-it" alt="Italy"> Italiano
+						</a>
+					</li>	
+					<li>
+						<a href="javascript:void(0);">
+							<img src="/assets/admin/images/blank.gif" class="flag flag-pt" alt="Portugal"> Portugal
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0);">
+							<img src="/assets/admin/images/blank.gif" class="flag flag-ru" alt="Russia"> Русский язык
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0);">
+							<img src="/assets/admin/images/blank.gif" class="flag flag-kr" alt="Korea"> 한국어
+						</a>
+					</li>						
+				</ul>
+			</li>
+		</ul>
+	</div>
+</header>

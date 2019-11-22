@@ -1,0 +1,80 @@
+<!-- 主体 -->
+<div ui-view class="view clearfix">
+	<div class="jarviswidget margin-13">
+		<header>
+			<h2>
+				<div class="input-group">
+					<input class="form-control" id="prepend" placeholder="搜索内容" type="text">
+					<span class="input-group-addon"><i class="fa fa-search"></i></span>
+				</div>
+			</h2>
+			<div class="jarviswidget-ctrls" ng-if="editAuth">
+				<a class="button-icon" ui-sref="main.contents.create">
+					&nbsp;&nbsp;<i class="fa fa-plus "></i> 新增内容&nbsp;&nbsp;
+				</a>	
+			</div>
+		</header>
+		<div class="widget-body table-responsive">
+			<table class="table table-hover table-bordered">
+				<thead class="text-center">
+					<tr>
+						<th ng-if="category.model.system.thumbnail">缩略图</th>
+						<th>标题</th>
+						<th>阅读量</th>
+						<th>发布人</th>
+						<th>状态</th>
+						<th>发布时间</th>
+						<th ng-if="editAuth">操作</th>
+					</tr>
+				</thead>
+				<tbody class="text-center text-middle">
+					<tr ng-if="contents.length==0">
+						<td colspan="7">
+							暂无数据
+						</td>
+					</tr>
+					<tr ng-repeat="content in contents">
+						<td ng-if="category.model.system.thumbnail" width="90">
+							<div ng-if="content.thumbnail" class="list-thumbnail">
+								<img ng-src="{{content.thumbnail.src.small}}">
+							</div>
+							<div ng-if="!content.thumbnail">-</div>
+						</td>
+						<td class="text-left">
+							<a href="{{content.url}}" title="{{content.title}}" target="_blank">
+								{{content.title | words: 30 }} <i class="fa fa-external-link"></i>
+							</a>
+						</td>
+						<td>{{content.reading.total}}</td>
+						<td>{{content.user.nickname}}</td>
+						<td>{{content.status | translate: { display: 'name', same: 'value', source: statusType } }}</td>
+						<td>{{content.status !== 'pushed' ? '-' : content.date | date: 'yyyy年MM月dd日'}}</td>
+						<td ng-if="editAuth">
+							<a ng-disabled="disable_form" ng-click="disable_form ? $event.preventDefault() : false" 
+								ui-sref="main.contents.update({ category: content.category._id, content: content._id })" class="btn btn-default btn-xs">
+								<i class="fa fa-edit"></i> 修改
+							</a>
+							<button ng-disabled="disable_form" ng-click="deleteContent(content._id)" class="btn btn-default btn-xs" type="button">
+								<i class="fa fa-trash-o"></i> 删除
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="widget-footer" ng-if="contents.length>0">
+			<div class="btn-group pull-left">
+				<span>显示：</span>
+				<select ng-model="pageInfo.pageSize">
+					<option value="15">15</option>
+					<option value="10">10</option>
+					<option value="5">5</option>
+					<option value="2">2</option>
+					<option value="1">1</option>
+				</select>
+				<span>条/页</span>
+			</div>
+			<nd-pagination page-data="pageInfo" class="pull-right"></nd-pagination>
+		</div>	
+   	</div>
+</div>

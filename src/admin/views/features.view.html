@@ -1,0 +1,72 @@
+<div ui-view class="view">
+	<!-- deleteFeatureInfo父级3作用域 -->
+	<div ng-if="noFeatureModel">
+		<br><br><br>
+		<h4 class="text-center text-muted">尚未添加推荐模型，请前往“系统设置”中添加</h4>
+	</div>
+	<!-- deleteFeatureInfo父级2作用域 -->
+	<div class="jarviswidget margin-13" ng-repeat="model in models | orderBy: 'mixed.sort'">
+		<header>
+			<h2>{{model.name}}&nbsp;&nbsp;<small ng-if="model.description" class="text-muted">{{model.description}}</small></h2>
+			<div class="jarviswidget-ctrls" ng-if="editAuth && model.features.length < model.mixed.limit">  
+				<a ui-sref="main.features.create({ model: model._id })" class="button-icon">
+					&nbsp;&nbsp;<i class="fa fa-plus "></i> 新增&nbsp;&nbsp;
+				</a>  
+			</div>
+		</header>
+		<div class="widget-body table-responsive">
+			<table class="table table-hover table-bordered" ng-if="model.features.length>0">
+				<thead class="text-center">
+					<tr>
+						<th>排序</th>
+						<th ng-if="model.system.thumbnail" width="90">缩略图</th>
+						<th ng-if="model.system.title">标题</th>
+						<th ng-if="model.system.url">链接</th>
+						<th ng-repeat="item in model.extensions">{{item.name}}</th>
+						<th ng-if="editAuth" class="text-center">操作</th>
+					</tr>
+				</thead>
+				<tbody class="text-center text-middle">
+					<tr ng-repeat="feature in model.features | orderBy: 'sort'">
+						<!-- deleteFeatureInfo父级1作用域 -->
+						<td>{{feature.sort}}</td>
+						<td ng-if="model.system.thumbnail">
+							<div ng-if="feature.thumbnail" class="list-thumbnail">
+								<img ng-src="{{feature.thumbnail.src.small}}">
+							</div>
+							<div ng-if="!feature.thumbnail">-</div>
+						</td>
+						<td ng-if="model.system.title">{{feature.title | words: 20}}</td>
+						<td ng-if="model.system.url">{{!feature.url ? '-' : feature.url | words: 20}}</td>
+						<td ng-repeat="item in model.extensions">
+							<span ng-if="!feature.extensions[item.key]">-</span>
+							<span ng-if="feature.extensions[item.key] && item.type === 'media'">
+								{{feature.extensions[item.key].length}} 个媒体
+							</span>
+							<span ng-if="feature.extensions[item.key] && item.type !== 'media'">
+								{{feature.extensions[item.key] | words: 20}}
+							</span>
+						</td>
+						<td ng-if="editAuth">
+							<!-- deleteFeatureInfo当前作用域 -->
+							<!-- ng-if,ng-view,ng-repeat等指令内部scope属性为true -->
+							<!-- 所以拥有这些指令的标签会形成一个独立的作用域，同时继承父级作用域 -->
+							<!-- 但是在子作用域修改父作用域的属性时，不会生效 -->
+							<a ng-disabled="disable_form" ng-click="disable_form ? $event.preventDefault() : false" 
+								ui-sref="main.features.update({ model: model._id, feature: feature._id })" class="btn btn-default btn-xs">
+								<i class="fa fa-edit"></i> 修改
+							</a>
+							<button ng-disabled="disable_form" ng-click="deleteFeature(model._id,feature._id)" 
+									class="btn btn-default btn-xs" type="button">
+								<i class="fa fa-trash-o"></i>删除
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h6 ng-if="model.features.length==0" class="text-center text-muted">
+				<br/>尚未添加数据，请点击新增按钮添加
+			</h6>
+		</div>
+	</div>
+</div>

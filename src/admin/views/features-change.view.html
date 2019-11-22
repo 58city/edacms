@@ -1,0 +1,105 @@
+<!-- 媒体选择模态 -->
+<nd-media-select media="media"></nd-media-select>
+<!-- 1.当作用域嵌套时，父作用域$scope挂载的简单数据类型，会被子作用域继承（按值的方式） -->
+<!--   所以当在子作用域直接使用继承自父作用域的数据时，其值的改变不会再影响父作用域的这个数据 -->
+<!-- 2.当作用域嵌套时，父作用域$scope挂载的引用数据类型，会被子作用域继承（按引用的方式） -->
+<!--   所以当在子作用域直接使用继承自父作用域的数据时，其值的改变会再次影响父作用域的这个数据 -->
+<form ng-submit="saveFeature()" id="featureForm" name="featureForm" class="margin-13" novalidate>
+	<div class="row">
+		<!-- ng-submit会产生独立作用域 -->
+		<div class="col-md-9">
+			<div class="jarviswidget">
+				<header><h2>基本信息</h2></header>
+				<!-- ##widget-body开始## -->
+				<div class="widget-body form-horizontal clear-bottom-padding">
+					<div ng-class="{ 'has-error': featureForm.sort.$touched && featureForm.sort.$invalid }" class="form-group">
+						<label for="sort" class="col-sm-2 control-label">* 排序：</label>
+						<div class="col-sm-10">
+							<input ng-model="sort" ng-disabled="disable_form" type="number" min="0" class="form-control" id="sort" name="sort" placeholder="请输入排序" required>
+						</div>
+					</div>
+					<div ng-class="{ 'has-error': featureForm.title.$touched && featureForm.title.$invalid }" class="form-group">
+						<label for="title" class="col-sm-2 control-label">* 标题：</label>
+						<div class="col-sm-10">
+							<input ng-model="title" ng-disabled="disable_form" type="text" class="form-control" id="title" name="title" placeholder="请输入标题" required>
+						</div>
+					</div>
+					<div ng-if="model.system.url" ng-class="{ 'has-error': featureForm.url.$touched && featureForm.url.$invalid }" class="form-group">
+						<!-- ng-if会产生独立作用域，ng-class不会 -->
+						<label for="url" class="col-sm-2 control-label">链接：</label>
+						<div class="col-sm-10">
+							<input ng-model="$parent.url" ng-disabled="disable_form" type="url" class="form-control" id="url" name="url" placeholder="请输入链接">
+						</div>
+					</div>
+					<div ng-repeat="item in model.extensions" ng-class="{ 'has-error': featureForm.input{{item.key}}.$touched && featureForm.input{{item.key}}.$invalid, 'extensions-media': item.type === 'media' }" class="form-group">
+						<!-- ng-repeat会产生独立作用域 -->
+						<label for="input{{item.key}}" class="col-sm-2 control-label">{{item.name}}：</label>
+						<div class="col-sm-10" ng-class="{'extensions-media-list': item.type === 'media'}">
+							<input ng-if="item.type === 'text' || item.type === 'number'" ng-model="extensions[item.key]" ng-disabled="disable_form" type="{{item.type}}" class="form-control" id="input{{item.key}}" name="input{{item.key}}" placeholder="请输入{{item.name}}">
+							<textarea ng-if="item.type === 'textarea'" ng-model="extensions[item.key]" ng-disabled="disable_form" class="form-control" id="input{{item.key}}" name="input{{item.key}}" placeholder="请输入{{item.name}}" rows="3"></textarea>
+							<select ng-if="item.type === 'select'" ng-options="key.value as key.name for key in item.mixed.select" ng-model="extensions[item.key]" ng-disabled="disable_form" class="form-control" id="select{{item.key}}" name="input{{item.key}}">
+								<option value="">请选择{{item.name}}</option>
+							</select>
+							<div ng-if="item.type === 'media'" >
+								<div ng-click="" ng-repeat="medium in extensions[item.key]" class="col-md-3 col-sm-4 col-xs-6 margin-bottom-10">
+									<div class="upload-thumbnail success pointer">
+										<!-- 媒体删除按钮 -->
+										<span ng-click="removeExtensionsMedia(item.key, item.mixed.limit, medium)" class="fa-stack fa-lg remove top-right">
+											<i class="fa fa-circle fa-stack-2x"></i>
+											<i class="fa fa-times fa-stack-1x fa-inverse"></i>
+										</span>
+										<!-- 媒体图片文件显示 -->
+										<img ng-if="medium.isImage && medium.src" ng-src="{{medium.src}}">
+										<!-- 媒体其他文件显示 -->
+										<div ng-if="!medium.isImage" class="thumbnail-file">
+											<div class="fileicon">
+												<i class="fa fa-file fa-3x"></i>
+												<div class="filelastname">{{medium.fileNameLast}}</div>
+											</div>
+											<div class="filename">{{medium.fileName}}</div>
+										</div>
+									</div>
+								</div>
+								<div ng-if="!disabledExtMediaAdd[item.key]" class="col-md-3 col-sm-4 col-xs-6 margin-bottom-10">
+									<div class="upload-thumbnail initial">
+										<!-- 媒体添加按钮 -->
+										<button ng-click="addExtensionMedia(item.key, item.mixed.limit)" class="btn-upload-thumbnail" type="button">
+											<i class="fa fa-plus"></i>
+										</button>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="clearfix"></div>
+							<p ng-if="item.description" class="help-block">{{item.description}}</p>
+						</div>
+					</div>
+				</div>
+				<!-- ##widget-body结束## -->
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="jarviswidget">
+				<header><h2>缩略图</h2></header>
+				<div class="widget-body">
+					<nd-thumbnail ng-if="model.system.thumbnail" 
+									thumbnail="$parent.thumbnail" 
+									width="model.mixed.thumbnailSize.width" 
+									height="model.mixed.thumbnailSize.height">
+					</nd-thumbnail>
+				</div>
+			</div>
+			<div class="jarviswidget">
+				<header><h2>发布</h2></header>
+				<div class="widget-body" style="min-height: auto;">
+					<button ng-if="action === 'create'" ng-disabled="disable_form || featureForm.$invalid" class="btn btn-primary btn-block" type="submit" form="featureForm">
+						<i class="fa fa-paper-plane"></i> 发布推荐
+					</button>
+					<button ng-if="action === 'update'" ng-disabled="disable_form || featureForm.$invalid" class="btn btn-primary btn-block" type="submit" form="featureForm">
+						<i class="fa fa-save"></i> 更新推荐
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

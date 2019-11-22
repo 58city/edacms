@@ -1,0 +1,47 @@
+<!-- 主体 -->
+<div ui-view class="view">
+	<div class="jarviswidget margin-13">
+		<header>
+			<h2>分类列表</h2>
+			<div class="jarviswidget-ctrls" ng-if="editAuth">
+				<a ui-sref="main.categories.create" class="button-icon">
+					&nbsp;&nbsp;<i class="fa fa-plus"></i> 新增分类&nbsp;&nbsp;
+				</a >
+			</div>
+		</header>
+		<div class="widget-body table-responsive">
+			<table class="table table-hover table-bordered">
+				<thead class="text-center">
+					<tr>
+						<th>排序</th><th>显示</th><th>名称</th><th>目录</th><th>类型</th><th>内容模型</th><th ng-if="editAuth">操作</th>
+					</tr>
+				</thead>
+				<tbody class="text-center">
+					<tr ng-repeat="category in categoriesSorted" ng-style="category.strong">
+						<td>{{category.sort}}</td>
+						<td><i ng-if="category.isShow" class="fa fa-check"></i></td>
+						<td class="text-left" ng-style="category.indent">{{category.prefix}}{{category.name}}</td>
+						<td ng-if="category.path" class="text-left">{{category.path}}</td>
+						<td ng-if="category.mixed.prePath" class="text-left">{{category.mixed.prePath}}</td>
+						<td>{{ category.type | translate:{display:'name',same:'type',source:types} }}</td>
+						<td>{{category.model.name ? category.model.name : '-'}}</td>
+						<td ng-if="editAuth">
+							<a ui-sref="main.categories.update({ category: category._id })" ng-style="category.strong" class="btn btn-default btn-xs">
+							   <i class="fa fa-edit"></i> 修改
+							</a>
+							<button ng-click="deleteCategory(category._id)" ng-style="category.strong" class="btn btn-default btn-xs" type="button" >
+								<i class="fa fa-trash-o"></i> 删除
+							</button>
+						</td>
+					</tr>
+					<tr ng-if="pending">
+						<td colspan="7" height="100" style="line-height: 100px;">数据正在加载中...</td>
+					</tr>
+					<tr ng-if="categoriesSorted.length==0&&!pending">
+						<td colspan="7" height="100" style="line-height: 100px;">暂无数据</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

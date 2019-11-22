@@ -1,0 +1,72 @@
+<!-- 主体 -->
+<div ui-view class="view clearfix">
+	<div class="jarviswidget margin-13">
+		<header>
+			<h2>
+				<div class="input-group">
+					<input class="form-control" id="prepend" placeholder="搜索媒体" type="text">
+					<span class="input-group-addon"><i class="fa fa-search"></i></span>
+				</div>
+			</h2>
+			<div class="jarviswidget-ctrls" ng-if="editAuth">
+				<a class="button-icon" ng-click="media.length==0 ? $event.preventDefault() : deleteListContent()">
+					&nbsp;&nbsp;<i class="fa fa-trash-o "></i> 删除当页&nbsp;&nbsp;
+				</a>	
+			</div>
+		</header>
+		<div class="widget-body table-responsive">
+			<table class="table table-hover table-bordered">
+				<thead class="text-center">
+					<tr>
+						<th>缩略图</th>
+						<th>文件名</th>
+						<th>描述</th>
+						<th>上传日期</th>
+						<th>大小</th>
+						<th>被引用数</th>
+						<th ng-if="editAuth">操作</th>
+					</tr>
+				</thead>
+				<tbody class="text-center text-middle">
+					<tr ng-repeat="medium in media">
+						<td width="90">
+							<div class="list-thumbnail">
+									<img ng-if="medium.isImage" ng-src="{{medium.src.small}}">
+								<!-- <img ng-if="medium.isImage" ng-src="{{medium | thumbnailSrc}}"> -->
+								<div ng-if="!medium.isImage" class="filenamelast">{{medium.fileNameLast}}</div>
+							</div>
+						</td>
+						<td class="text-left">
+							<a href="{{medium.src}}" title="{{medium.fileName}}" target="_blank">
+								{{medium.fileName | words: 20}}
+							</a>
+						</td>
+						<td>{{!medium.description ? '-' : medium.description | words: 20}}</td>
+						<td>{{medium.date | date: 'yyyy年MM月dd日'}}</td>
+						<td>{{medium.size / 1000 | number: 2}} KB</td>
+						<td>{{medium.quotes.length}}</td>
+						<td ng-if="editAuth">
+							<button ng-disabled="disable_form" ng-click="deleteMedium(medium._id)" class="btn btn-default btn-xs" type="button" >
+									<i class="fa fa-trash-o"></i> 删除
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="widget-footer" ng-if="media.length>0">
+			<div class="btn-group pull-left">
+				<span>显示：</span>
+				<select ng-model="pageInfo.pageSize">
+					<option value="15">15</option>
+					<option value="10">10</option>
+					<option value="5">5</option>
+					<option value="2">2</option>
+					<option value="1">1</option>
+				</select>
+				<span>条/页</span>
+			</div>
+			<nd-pagination page-data="pageInfo" class="pull-right"></nd-pagination>
+		</div>
+	</div>
+</div>

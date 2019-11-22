@@ -1,0 +1,297 @@
+<!-- 主体 -->
+<form ng-submit="saveModel()" id="modelForm" name="modelForm" class="margin-13" novalidate>
+	<div class="row">
+		<div class="col-md-9">
+			<div class="jarviswidget">
+				<header>
+					<ul class="nav nav-tabs in">
+						<li class="active">
+							<a data-toggle="tab" data-target="#hr1"><span>系统键</span></a>
+						</li>
+						<li>
+							<a data-toggle="tab" data-target="#hr2"><span>扩展键</span></a>
+						</li>
+					</ul>
+				</header>
+				<div class="widget-body">
+					<div class="tab-content">
+						<div class="tab-pane table-responsive active" id="hr1">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th class="text-center">名称</th>
+										<th class="text-center">键名</th>
+										<th class="text-center">类型</th>
+										<th class="text-center">备注</th>
+										<th class="text-center">启用</th>
+									</tr>
+								</thead>
+								<tbody class="text-center text-middle">
+									<tr>
+										<td>缩略图</td><td>thumbnail</td><td>缩略图</td><td>内容缩略图</td>
+										<td>
+											<i ng-class="{ 'fa-toggle-on  text-success': system.thumbnail, 
+														   'fa-toggle-off text-muted':  !system.thumbnail }" 
+											   ng-click="system.thumbnail = !system.thumbnail" class="fa fa-2x pointer">
+											</i>
+										</td>
+									</tr>
+									<tr ng-if="system.thumbnail">
+										<td class="clear-border-top form-horizontal" colspan="5">
+											<div class="well well-sm clear-bottom-margin">
+												<div ng-class="{ 'has-error': modelForm.thumbnailWidth.$touched && modelForm.thumbnailWidth.$invalid }" class="form-group form-group-sm form-group-sm-bottom">
+													<label for="thumbnailWidth" class="col-sm-2 control-label">* 缩略图宽度</label>
+													<div class="col-sm-10">
+														<div class="input-group">
+															<input ng-model="$parent.thumbnailSize.width" 
+																ng-disabled="$parent.disable_form" 
+																class="form-control" id="thumbnailWidth" 
+																type="number" name="thumbnailWidth" min="0" required 
+																placeholder="请输入缩略图宽">
+															<span class="input-group-addon">px</span>
+														</div>
+													</div>
+												</div>
+												<div ng-class="{ 'has-error': modelForm.thumbnailHeight.$touched && modelForm.thumbnailHeight.$invalid }" class="form-group form-group-sm clear-bottom-margin">
+													<label for="thumbnailHeight" class="col-sm-2 control-label">* 缩略图高度</label>
+													<div class="col-sm-10">
+														<div class="input-group">
+															<input ng-model="$parent.thumbnailSize.height" 
+																ng-disabled="$parent.disable_form" 
+																class="form-control" id="thumbnailHeight" 
+																type="number" name="thumbnailHeight" min="0" required
+																placeholder="请输入缩略图高">
+															<span class="input-group-addon">px</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>摘要</td><td>abstract</td><td>文本域</td><td>内容摘要</td>
+										<td>
+											<i ng-class="{ 'fa-toggle-on  text-success': system.abstract, 
+											               'fa-toggle-off text-muted':  !system.abstract }" 
+											   ng-click="system.abstract = !system.abstract" class="fa fa-2x pointer">
+											</i>
+										</td>
+									</tr>
+									<tr>
+										<td>内容</td><td>content</td><td>编辑器</td><td>内容</td>
+										<td>
+											<i ng-class="{ 'fa-toggle-on text-success': system.content, 
+											               'fa-toggle-off text-muted': !system.content }" 
+											   ng-click="system.content = !system.content" class="fa fa-2x pointer">
+											</i>
+										</td>
+									</tr>
+									<tr>
+										<td>标签</td><td>tags</td><td>标签</td><td>内容标签</td>
+										<td>
+											<i ng-class="{ 'fa-toggle-on text-success': system.tags, 
+											               'fa-toggle-off text-muted': !system.tags }" 
+											   ng-click="system.tags = !system.tags" class="fa fa-2x pointer">
+											</i>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="tab-pane table-responsive" id="hr2">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th class="text-center">名称</th>
+										<th class="text-center">键名</th>
+										<th class="text-center">类型</th>
+										<th class="text-center">备注</th>
+										<th class="text-center">操作</th>
+									</tr>
+								</thead>
+								<tbody class="text-center text-middle">
+									<tr ng-repeat="key in extensions">
+										<td>{{key.name}}</td>
+										<td>{{key.key}}</td>
+										<td>{{key.type | translate: { display: "name", same: "type", source: keyType} }}</td>
+										<td>{{key.description}}</td>
+										<td>
+											<button ng-click="keyModel(key, $index)" 
+													class="btn btn-default btn-xs" type="button">
+												<i class="fa fa-edit"></i> 修改
+											</button>
+											<button ng-click="deleteKey($index)" 
+													class="btn btn-default btn-xs" type="button">
+												<i class="fa fa-trash-o"></i> 移除
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<br>
+							<button ng-click="keyModel()" class="btn btn-default btn-sm btn-block" type="button">
+								<i class="fa fa-plus"></i> 新增键
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="jarviswidget">
+				<header><h2>模型信息</h2></header>
+				<div class="widget-body">
+					<div ng-class="{ 'has-error': modelForm.name.$touched && modelForm.name.$invalid }" class="form-group">
+						<label class="control-label" for="name">* 模型名称：</label>
+						<input ng-model="name" ng-disabled="disable_form" 
+							   class="form-control" id="name" type="text" name="name" 
+							   placeholder="请输入模型名称" required>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="description">模型备注：</label>
+						<input ng-model="description" ng-disabled="disable_form" 
+							   class="form-control" id="description" name="description" type="text" 
+							   placeholder="请输入模型备注">
+					</div>
+					<button ng-disabled="disable_form || modelForm.$invalid" 
+						    class="btn btn-primary btn-block" type="submit" form="modelForm">
+						<i class="fa fa-save"></i> 保存模型</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<!-- 新建/编辑键 模态框-->
+<div class="modal fade" id="keyModal" tabindex="-1" role="dialog" aria-labelledby="keyModalTitle" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 ng-if="keyFormAction === 'add'" class="modal-title" id="keyModalTitle">添加键</h4>
+				<h4 ng-if="keyFormAction === 'edit'" class="modal-title" id="keyModalTitle">修改键</h4>
+			</div>
+			<div class="modal-body">
+				<form ng-submit="saveKey()" class="form-horizontal" id="keyForm" name="keyForm" novalidate>
+					<div ng-class="{ 'has-error': keyForm.name.$touched && keyForm.name.$invalid }" class="form-group">
+						<label for="name" class="col-sm-2 control-label">* 名称：</label>
+						<div class="col-sm-10">
+							<input ng-model="key.name" type="text" id="name" name="name" 
+								   class="form-control" placeholder="请输入名称" required>
+						</div>
+					</div>
+					<div ng-class="{ 'has-error': keyForm.key.$touched && (keyForm.key.$invalid || keyNonUnique )}" class="form-group">
+						<label for="key" class="col-sm-2 control-label">* 键名：</label>
+						<div class="col-sm-10">
+							<input ng-model="key.key" ng-pattern="/^[A-z0-9\-\_]+$/" 
+									type="text" id="key" name="key" 
+									class="form-control" placeholder="请输入键名" required>
+							<p ng-show="keyForm.key.$touched && keyNonUnique" class="help-block">
+								键名不能重复
+							</p>
+							<p ng-show="keyForm.key.$touched && keyForm.key.$error.pattern" class="help-block">
+								仅能使用大小写字母、数字、中划线以及下划线
+							</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="type" class="col-sm-2 control-label">类型：</label>
+						<div class="col-sm-10">
+							<select ng-model="key.type" 
+									ng-options="type.type as type.name for type in keyType" 
+									class="form-control" id="type">
+							</select>
+						</div>
+					</div>
+					<div ng-if="key.type === 'select'" class="row">
+						<div class="col-md-10 col-md-offset-2">
+							<div class="panel panel-default">
+								<table class="table">
+									<thead>
+										<tr>
+											<th class="text-center">名称</th>
+											<th class="text-center">值</th>
+											<th class="text-center">操作</th>
+										</tr>
+									</thead>
+									<tbody class="text-center text-middle">
+										<tr ng-repeat="select in key.mixed.select">
+											<td>{{select.name}}</td>
+											<td>{{select.value}}</td>
+											<td>
+												<button ng-click="deleteKeyTypeSelectOpt($index)" 
+														class="btn btn-default btn-sm" type="button">
+													移除
+												</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="panel-footer">
+									<div ng-class="{ 'has-error': keyForm.keyTypeSelectOptName.$touched && keyTypeSelectOptInvalid.name }" class="form-group form-group-sm form-group-sm-bottom">
+										<label for="keyTypeSelectOptName" class="col-sm-2 control-label">名称：</label>
+										<div class="col-sm-10">
+											<input ng-model="keyTypeSelect.name" 
+													type="text" id="keyTypeSelectOptName" name="keyTypeSelectOptName"
+													class="form-control input-sm" placeholder="请输入名称">
+										</div>
+									</div>
+									<div ng-class="{ 'has-error': keyForm.keyTypeSelectOptValue.$touched && keyTypeSelectOptInvalid.value }" class="form-group form-group-sm form-group-sm-bottom">
+										<label for="keyTypeSelectOptValue" class="col-sm-2 control-label">值：</label>
+										<div class="col-sm-10">
+											<input ng-model="keyTypeSelect.value" 
+													type="text" id="keyTypeSelectOptValue" name="keyTypeSelectOptValue" 
+													class="form-control" placeholder="请输入值">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-10 col-md-offset-2">
+											<button ng-click="addKeyTypeSelectOpt()" 
+													ng-disabled="keyTypeSelectOptInvalid.name || keyTypeSelectOptInvalid.value" 
+													class="btn btn-default btn-block btn-sm" type="button">
+												添加
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div ng-if="key.type === 'media'" class="row">
+						<div class="col-md-10 col-md-offset-2">
+							<div class="well well-sm">
+								<div class="form-group form-group-sm clear-bottom-margin">
+									<label for="keylimit" class="col-sm-2 control-label">数量：</label>
+									<div class="col-sm-10">
+										<input ng-model="$parent.key.mixed.limit" 
+												type="number" id="keylimit" name="keylimit" min="1" 
+												class="form-control" placeholder="请输入媒体数量">
+										<p class="help-block clear-bottom-margin">
+											限制在扩展信息中可添加的媒体数量
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="description" class="col-sm-2 control-label">备注：</label>
+						<div class="col-sm-10">
+							<input ng-model="key.description" 
+									type="text" id="description" 
+									class="form-control" placeholder="请输入备注">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default" type="button" data-dismiss="modal">取消</button>
+				<button ng-disabled="keyForm.$invalid || keyNonUnique" 
+						class="btn btn-primary" type="submit" form="keyForm">
+					<i class="fa fa-save"></i> 保存键
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,128 @@
+<aside id="left-panel">
+	<div class="login-info">
+		<span>
+			<a href="javascript:void(0);">
+				<img src="/assets/admin/images/avatars/sunny.png" alt="me" class="online" /> 
+				<span>{{user.nickname}} {{user.role.name}} </span>
+			</a>	
+		</span>
+	</div>
+	<nav nd-nicescroll nice-option="{cursorcolor:'#000',cursoropacitymax:0.2,cursorborder:'',horizrailenabled:false}">
+		<ul class="clearfix first-level">
+			<li ui-sref-active-eq="active">
+				<a ui-sref="main" ng-click="checkAn()">
+					<i class="fa fa-dashboard fa-fw"></i> 
+					<span class="menu-item-parent">控制面板</span>
+				</a>
+			</li>
+			<li ng-if="auths.features.read" ui-sref-active-eq="active">
+				<a ui-sref="main.features" ng-click="checkAn()">
+					<i class="fa fa-star fa-fw"></i> 
+					<span class="menu-item-parent">推荐管理</span>
+				</a>
+			</li>
+			<li ng-if="auths.contents.read && !notFoundContents" ui-sref-active-eq="active" ng-class="{'open':an.content}">
+				<a href="javascript:void(0);" ng-click="checkAn('content')">
+					<i class="fa fa-book fa-fw"></i> 
+					<span class="menu-item-parent">内容管理</span>
+					<b><em class='fa'></em></b>
+				</a>
+				<ul class="second-level">
+					<li ng-repeat="category in categoriesSorted" ng-if=" category.type === 'column' || category.type === 'channel' " ui-sref-active-eq="active">
+						<a href="javascript:void(0);" ng-if=" category.type === 'channel' " ng-style="category.indent">
+							{{category.name}}
+						</a>
+						<a ui-sref="main.contents({ category: category._id })" ng-if=" category.type === 'column' " ng-style="category.indent">
+							{{category.prefix}}{{category.name}}
+						</a>
+					</li>
+					<li ui-sref-active-eq="active">
+						<a ui-sref="main.contents.trash" class="item">
+							回收站
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li ng-if="auths.contents.read && notFoundContents" ui-sref-active-eq="active">
+				<a ui-sref="main.notFoundContents" ng-click="checkAn()">
+					<i class="fa fa-book fa-fw"></i>
+					<span class="menu-item-parent">内容管理</span>
+				</a>
+			</li>
+			<li ng-if="auths.pages.read && !notFoundPages" ui-sref-active-eq="active" ng-class="{'open':an.page}">
+				<a href="javascript:void(0);" ng-click="checkAn('page')">
+					<i class="fa fa-sticky-note fa-fw"></i>
+					<span class="menu-item-parent">单页管理</span>
+					<b><em class='fa'></em></b>
+				</a>
+				<ul class="second-level">
+					<li ng-repeat="category in categories" ng-if="category.type === 'page' && category.mixed.isEdit" ui-sref-active-eq="active">
+						<a  ui-sref="main.pages({ page: category._id })">
+							{{category.name}}
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li ng-if="auths.pages.read && notFoundPages" ui-sref-active-eq="active">
+				<a ui-sref="main.notFoundPages" ng-click="checkAn()">
+					<i class="fa fa-sticky-note fa-fw"></i> 
+					<span class="menu-item-parent">单页管理</span>
+				</a>
+			</li>
+			<li ng-if="auths.media.read" ui-sref-active-eq="active">
+				<a ui-sref="main.media" ng-click="checkAn()">
+					<i class="fa fa-archive fa-fw"></i>
+					<span class="menu-item-parent">媒体库</span>
+				</a>
+			</li>
+			<li ng-if="auths.account.read" ui-sref-active-eq="active">
+				<a ui-sref="main.account" ng-click="checkAn()">
+					<i class="fa fa-cog fa-fw"></i>
+					<span class="menu-item-parent">帐号设置</span>
+				</a>
+			</li>
+			<li ng-if="auths.siteInfo.read || auths.categories.read || auths.contentModels.read || auths.featureModels.read || auths.roles.read || auths.adminUsers.read" ui-sref-active-eq="active" ng-class="{'open':an.sys}">
+				<a href="javascript:void(0);" ng-click="checkAn('sys')">
+					<i class="fa fa-cogs fa-fw"></i> 
+					<span class="menu-item-parent">系统设置</span>
+					<b><em class='fa'></em></b>
+				</a>
+				<ul class="second-level">
+					<li ng-if="auths.siteInfo.read" ui-sref-active-eq="active">
+						<a ui-sref="main.siteInfo" >
+							网站配置
+						</a>
+					</li>
+					<li ng-if="auths.categories.read" ui-sref-active-eq="active">
+						<a ui-sref="main.categories">
+							内容分类
+						</a>
+					</li>
+					<li ng-if="auths.contentModels.read" ui-sref-active-eq="active">
+						<a ui-sref="main.contentModels">
+							内容模型
+						</a>
+					</li>
+					<li ng-if="auths.featureModels.read" ui-sref-active-eq="active">
+						<a ui-sref="main.featureModels">
+							推荐模型
+						</a>
+					</li>
+					<li ng-if="auths.roles.read" ui-sref-active-eq="active">
+						<a ui-sref="main.roles">
+							权限角色
+						</a>	
+					</li>
+					<li ng-if="auths.adminUsers.read" ui-sref-active-eq="active">
+						<a ui-sref="main.adminUsers">
+							后台用户
+						</a>						
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<span class="minifyme" ng-click="minifyMenu()"> 
+			<i class="fa fa-arrow-circle-left hit"></i> 
+		</span>
+	</nav>
+</aside>
