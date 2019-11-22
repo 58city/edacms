@@ -6,11 +6,11 @@ var less = require('gulp-less');                           //压缩 less
 var minify = require('gulp-clean-css');                    //压缩 CSS
 var autoprefixer = require('gulp-autoprefixer');           //给 CSS 增加前缀
 var uglify = require('gulp-uglify');                       //压缩 Javascript
-var concat = require('gulp-concat');                       //合并,“减少网络请求”
+var concat = require('gulp-concat');                       //合并“减少网络请求”
 var templateCache = require('gulp-angular-templatecache'); //生成angular模板缓存文件
 var livereload=require('gulp-livereload');                 //热更新
 //var filter = require('gulp-filter');
-//var changed = require('gulp-changed');
+//var changed = require('gulp-changed'); 
 
 
 
